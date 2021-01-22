@@ -3,12 +3,26 @@ import { connect } from 'react-redux';
 import { postSmurfs } from './../actions';
 
 class AddForm extends React.Component {
+    state = {
+        name: '',
+        position: '',
+        description: ''
+    }
+       
+    handleChange = (e) => {
+        this.setState({
+            formValues : {
 
-    // handleChange = (e) => {
-    //     this.setState(
-    //         name: e.target.value
-    //     )
-    // }
+                name: e.target.value,
+                position: e.target.value,
+                description: e.target.value
+        }
+        })}
+
+    handleSubmit = () => {
+        this.postSmurfs(this.state.formValues)
+        console.log(this.smurfs)
+    }
 
     render() {
         return(<section>
@@ -16,11 +30,11 @@ class AddForm extends React.Component {
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
-                    <input onChange={this.handleChange} name="name" id="name" />
+                    <input onChange={this.handleChange} name="name" id="name" value={this.state.name} />
                     <label htmlFor='position'>Position</label><br />
-                    <input onChange={this.handleChange} name="position" id="position" />
+                    <input onChange={this.handleChange} name="position" id="position" value={this.state.position} />
                     <label htmlFor='description'>Description</label><br />
-                    <input onChange={this.handleChange} name="description" id="description" />
+                    <input onChange={this.handleChange} name="description" id="description" value={this.state.description} />
                 </div>
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
@@ -29,17 +43,18 @@ class AddForm extends React.Component {
         </section>);
     }
 }
-// console.log(this.props)
-console.log()
+
 
 const mapStateToProps = (state) => {
     return {
-        name: state.name,
-        position: state.position,
-        nickname: state.nickname,
-        description: state.description
+       smurfs: state.smurfs,
+       isLoading: state.isLoading,
+       error: ''
     }
 }
+
+// console.log(this.props)
+// console.log(this.state)
 
 export default connect(mapStateToProps, { postSmurfs })(AddForm);
 

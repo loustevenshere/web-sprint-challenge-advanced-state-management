@@ -4,6 +4,7 @@ export const SMURF_CALL_START = 'SMURF_CALL_START';
 export const SMURF_CALL_END = 'SMURF_CALL_END';
 export const SMURF_CALL_SUCCESS = 'SMURF_CALL_SUCCESS';
 export const SMURF_CALL_FAIL = 'SMURF_CALL_FAIL';
+export const SMURF_POST_SUCCESS = 'SMURF_POST_SUCCESS'
 
 //Task List:
 //1. Add fetch smurfs action: 
@@ -25,11 +26,11 @@ export const getSmurfs = () => dispatch => {
         .get('http://localhost:3333/smurfs')
         .then(res => {
             dispatch({ type: SMURF_CALL_SUCCESS, payload: res.data})
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => {
             dispatch({ type: SMURF_CALL_FAIL, payload: err})
-            console.log(err)
+            // console.log(err)
         })
 }
 
@@ -40,7 +41,7 @@ export const postSmurfs = (smurf) => dispatch => {
     axios
         .post('http://localhost:3333/smurfs')
         .then(res => {
-            dispatch({type: SMURF_CALL_SUCCESS, payload: smurf})
+            dispatch({type: SMURF_POST_SUCCESS, payload: smurf})
             console.log(res)
         })
         .catch(err => {

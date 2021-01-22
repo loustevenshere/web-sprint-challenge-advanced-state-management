@@ -1,10 +1,6 @@
-import {SMURF_CALL_START, SMURF_CALL_END, SMURF_CALL_SUCCESS, SMURF_CALL_FAIL } from './../actions'
+import {SMURF_CALL_START, SMURF_CALL_END, SMURF_CALL_SUCCESS, SMURF_CALL_FAIL, SMURF_POST_SUCCESS } from './../actions'
 export const initialState = {
-    name: '',
-    position: '',
-    nickname: '',
-    description: '',
-    id: '',
+    smurfs : [],
     isLoading: false,
     error: ''
 }
@@ -24,11 +20,12 @@ const reducer = (state = initialState, action)=>{
         case(SMURF_CALL_SUCCESS):
         return({
             ...state,
+            smurfs: {
             name: action.payload,
             position: action.payload,
             nickname: action.payload,
             description: action.payload,
-            isLoading: false
+            isLoading: false }
         });
         case(SMURF_CALL_FAIL):
         return({
@@ -36,15 +33,17 @@ const reducer = (state = initialState, action)=>{
             error: action.payload,
             isLoading: false
         });
-        // case(SMURF_POST_SUCCESS):
-        // return({
-        //     ...state,
-        //     name: action.payload,
-        //     position: action.payload,
-        //     nickname: action.payload,
-        //     description: action.payload,
-        //     isLoading: false
-        // });
+        case(SMURF_POST_SUCCESS):
+        return({
+            ...state,
+            smurfs: {
+                name: action.payload,
+                position: action.payload,
+                nickname: action.payload,
+                description: action.payload,
+                isLoading: false
+            }
+        });
         // case(SMURF_POST_FAIL):
         // return({
         //     ...state,
@@ -52,7 +51,6 @@ const reducer = (state = initialState, action)=>{
         //     isLoading: false
         // });
 
-        // case('SMURF_POST_FAIL'):
 
         default:
             return state

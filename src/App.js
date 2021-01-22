@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { getSmurfs, postSmurfs } from './actions'
 import { connect } from "react-redux";
+import  reducer  from './reducers'
 
 
 
@@ -15,7 +16,8 @@ class App extends Component {
     //   console.log(res.data);
     // })
    this.props.getSmurfs()
-   this.props.postSmurfs()
+  //  this.props.postSmurfs()
+   console.log(this.state)
    
   }
   
@@ -36,11 +38,11 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.name
+    smurfs: state.smurfs
   }
 }
 
-export default connect(mapStateToProps, { getSmurfs, postSmurfs })(App);
+export default connect(mapStateToProps, { getSmurfs, postSmurfs, reducer })(App);
 
 //Task List:
 //1. Add in SmurfDisplay and AddForm into your application.
