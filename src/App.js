@@ -25,7 +25,7 @@ class App extends Component {
           <SmurfDisplay/>
         </main>
       </div>
-    );
+     );
   }
 }
 
