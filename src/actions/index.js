@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+export const SMURF_CALL_START = 'SMURF_CALL_START';
+export const SMURF_CALL_END = 'SMURF_CALL_END';
+export const SMURF_CALL_SUCCESS = 'SMURF_CALL_SUCCESS';
+export const SMURF_CALL_FAIL = 'SMURF_CALL_FAIL';
+
 //Task List:
 //1. Add fetch smurfs action: 
 //              - fetch and return initial list of smurfs
@@ -13,3 +18,35 @@ import axios from 'axios';
 //3. Add set error text action:
 //              - return action object setting error text
 //4. Any other actions you deem nessiary to complete application.
+
+export const getSmurfs = () => dispatch => {
+    dispatch({ type: SMURF_CALL_START});
+    axios
+        .get('http://localhost:3333/smurfs')
+        .then(res => {
+            dispatch({ type: SMURF_CALL_SUCCESS, payload: res.data})
+            console.log(res.data)
+        })
+        .catch(err => {
+            dispatch({ type: SMURF_CALL_FAIL, payload: err})
+            console.log(err)
+        })
+}
+
+// Make smurf post variables, #3?
+
+export const postSmurfs = (smurf) => dispatch => {
+    dispatch({type: SMURF_CALL_START});
+    axios
+        .post('http://localhost:3333/smurfs')
+        .then(res => {
+            dispatch({type: SMURF_CALL_SUCCESS, payload: smurf})
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch({ type: SMURF_CALL_FAIL, payload: err})
+            console.log(err)
+        })
+    };
+
+

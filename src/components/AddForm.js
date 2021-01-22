@@ -1,6 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { postSmurfs } from './../actions';
 
 class AddForm extends React.Component {
+
+    // handleChange = (e) => {
+    //     this.setState(
+    //         name: e.target.value
+    //     )
+    // }
 
     render() {
         return(<section>
@@ -9,6 +17,10 @@ class AddForm extends React.Component {
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
                     <input onChange={this.handleChange} name="name" id="name" />
+                    <label htmlFor='position'>Position</label><br />
+                    <input onChange={this.handleChange} name="position" id="position" />
+                    <label htmlFor='description'>Description</label><br />
+                    <input onChange={this.handleChange} name="description" id="description" />
                 </div>
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
@@ -17,8 +29,19 @@ class AddForm extends React.Component {
         </section>);
     }
 }
+// console.log(this.props)
+console.log()
 
-export default AddForm;
+const mapStateToProps = (state) => {
+    return {
+        name: state.name,
+        position: state.position,
+        nickname: state.nickname,
+        description: state.description
+    }
+}
+
+export default connect(mapStateToProps, { postSmurfs })(AddForm);
 
 //Task List:
 //1. Add in all necessary import components and library methods.

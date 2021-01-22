@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-
 import AddForm from './components/AddForm';
 import SmurfDisplay from './components/SmurfDisplay';
 import axios from 'axios';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+import { getSmurfs, postSmurfs } from './actions'
+import { connect } from "react-redux";
+
+
 
 class App extends Component {
   componentDidMount() {
-    axios.get('http://localhost:3333/smurfs').then(res=>{
-      console.log(res);
-    })
+    // axios.get('http://localhost:3333/smurfs').then(res=>{
+    //   console.log(res.data);
+    // })
+   this.props.getSmurfs()
+   this.props.postSmurfs()
+   
   }
   
   render() {
@@ -29,7 +34,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    name: state.name
+  }
+}
+
+export default connect(mapStateToProps, { getSmurfs, postSmurfs })(App);
 
 //Task List:
 //1. Add in SmurfDisplay and AddForm into your application.

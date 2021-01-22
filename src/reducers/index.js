@@ -1,8 +1,63 @@
-
+import {SMURF_CALL_START, SMURF_CALL_END, SMURF_CALL_SUCCESS, SMURF_CALL_FAIL } from './../actions'
 export const initialState = {
+    name: '',
+    position: '',
+    nickname: '',
+    description: '',
+    id: '',
+    isLoading: false,
+    error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+    switch(action.type) {
+        case(SMURF_CALL_START):
+        return({
+            ...state,
+            isLoading: true
+        });
+        case(SMURF_CALL_END):
+        return({
+            ...state,
+            isLoading: false
+        });
+        case(SMURF_CALL_SUCCESS):
+        return({
+            ...state,
+            name: action.payload,
+            position: action.payload,
+            nickname: action.payload,
+            description: action.payload,
+            isLoading: false
+        });
+        case(SMURF_CALL_FAIL):
+        return({
+            ...state,
+            error: action.payload,
+            isLoading: false
+        });
+        // case(SMURF_POST_SUCCESS):
+        // return({
+        //     ...state,
+        //     name: action.payload,
+        //     position: action.payload,
+        //     nickname: action.payload,
+        //     description: action.payload,
+        //     isLoading: false
+        // });
+        // case(SMURF_POST_FAIL):
+        // return({
+        //     ...state,
+        //     error: action.payload,
+        //     isLoading: false
+        // });
+
+        // case('SMURF_POST_FAIL'):
+
+        default:
+            return state
+
+    }
 }
 
 export default reducer;
