@@ -1,6 +1,15 @@
 import {SMURF_CALL_START, SMURF_CALL_END, SMURF_CALL_SUCCESS, SMURF_CALL_FAIL, SMURF_POST_SUCCESS } from './../actions'
+
 export const initialState = {
-    smurfs : [],
+    smurfs : [
+        {
+            id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+            name:'Poppa Smurf',
+            position:'Village Leader',
+            nickname: 'Pops',
+            description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
+          }
+    ],
     isLoading: false,
     error: ''
 }
@@ -20,12 +29,7 @@ const reducer = (state = initialState, action)=>{
         case(SMURF_CALL_SUCCESS):
         return({
             ...state,
-            smurfs: {
-            name: action.payload,
-            position: action.payload,
-            nickname: action.payload,
-            description: action.payload,
-            isLoading: false }
+            smurfs: action.payload
         });
         case(SMURF_CALL_FAIL):
         return({
@@ -36,13 +40,7 @@ const reducer = (state = initialState, action)=>{
         case(SMURF_POST_SUCCESS):
         return({
             ...state,
-            smurfs: {
-                name: action.payload,
-                position: action.payload,
-                nickname: action.payload,
-                description: action.payload,
-                isLoading: false
-            }
+            smurfs: action.payload
         });
         // case(SMURF_POST_FAIL):
         // return({

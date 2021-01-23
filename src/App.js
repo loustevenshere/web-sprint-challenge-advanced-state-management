@@ -28,7 +28,7 @@ class App extends Component {
           <a className="navbar-brand">Smurf Village Database</a>
         </nav>
         <main>
-          <AddForm/>
+          <AddForm />
           <SmurfDisplay/>
         </main>
       </div>

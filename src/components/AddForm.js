@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { postSmurfs } from './../actions';
 
 class AddForm extends React.Component {
-    state = {
-        name: '',
-        position: '',
-        description: ''
-    }
        
     handleChange = (e) => {
         this.setState({
@@ -25,6 +20,7 @@ class AddForm extends React.Component {
     }
 
     render() {
+        const { smurfs } = this.props.smurfs
         return(<section>
             <h2>Add Smurf</h2>
             <form>
@@ -36,6 +32,7 @@ class AddForm extends React.Component {
                     <label htmlFor='description'>Description</label><br />
                     <input onChange={this.handleChange} name="description" id="description" value={this.state.description} />
                 </div>
+                {/* {isLoading} */}
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
                 <button>Submit Smurf</button>
@@ -44,6 +41,7 @@ class AddForm extends React.Component {
     }
 }
 
+// console.log(smurfs)
 
 const mapStateToProps = (state) => {
     return {
@@ -53,7 +51,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-// console.log(this.props)
+// console.log(props.smurfs)
 // console.log(this.state)
 
 export default connect(mapStateToProps, { postSmurfs })(AddForm);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 export class SmurfDisplay extends React.Component {
     render() {
@@ -7,8 +8,15 @@ export class SmurfDisplay extends React.Component {
         </div>)
     }
 }
+console.log(this.smurfs)
 
-export default SmurfDisplay;
+const mapStateToProps = (state) => {
+    return {
+        smurfs: state.smurfs
+    }
+}
+
+export default connect(mapStateToProps)(SmurfDisplay);
 
 //Task List:
 //1. Import in all needed components and library methods.
