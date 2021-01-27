@@ -3,39 +3,53 @@ import { connect } from 'react-redux';
 import { postSmurfs } from './../actions';
 
 class AddForm extends React.Component {
+    state = {
+        formValues: {
+            name: '',
+            position: '',
+            nickname: '',
+            description: ''
+        }
+
+    }
        
     handleChange = (e) => {
         this.setState({
-            formValues : {
-
-                name: e.target.value,
-                position: e.target.value,
-                description: e.target.value
-        }
+            formValues: {
+                ...this.state.formValues,
+                    [e.target.name]:e.target.value
+            }
+             
         })}
 
-    handleSubmit = () => {
-        this.postSmurfs(this.state.formValues)
-        console.log(this.smurfs)
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.postSmurfs(this.state.formValues)
+        console.log(this.props.smurfs)
+
     }
 
     render() {
-        const { smurfs } = this.props.smurfs
+        // Console log at start of render function
+        // console.log(this.props)
+        console.log(this.state)
         return(<section>
             <h2>Add Smurf</h2>
             <form>
                 <div className="form-group">
                     <label htmlFor="name">Name:</label><br/>
-                    <input onChange={this.handleChange} name="name" id="name" value={this.state.name} />
+                    <input onChange={this.handleChange} name="name" id="name" value={this.state.formValues.name} />
                     <label htmlFor='position'>Position</label><br />
-                    <input onChange={this.handleChange} name="position" id="position" value={this.state.position} />
+                    <input onChange={this.handleChange} name="position" id="position" value={this.state.formValues.position}  />
+                    <label htmlFor='nickname'>Nickname</label><br />
+                    <input onChange={this.handleChange} name="nickname" id="nickname" value={this.state.formValues.nickname}  />
                     <label htmlFor='description'>Description</label><br />
-                    <input onChange={this.handleChange} name="description" id="description" value={this.state.description} />
+                    <input onChange={this.handleChange} name="description" id="description" value={this.state.formValues.description} />
                 </div>
                 {/* {isLoading} */}
 
                 <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: </div>
-                <button>Submit Smurf</button>
+                <button onClick={this.handleSubmit}>Submit Smurf</button>
             </form>
         </section>);
     }

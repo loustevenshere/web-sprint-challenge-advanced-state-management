@@ -38,9 +38,15 @@ const reducer = (state = initialState, action)=>{
             isLoading: false
         });
         case(SMURF_POST_SUCCESS):
+            // const newSmurf = {
+            //     name:action.payload.name,
+            //     position:action.payload.po,
+            //     nickname:action.payload,
+            //     description:action.payload
+            // };
         return({
             ...state,
-            smurfs: action.payload
+            smurfs: [...state.smurfs, action.payload]
         });
         // case(SMURF_POST_FAIL):
         // return({

@@ -16,8 +16,14 @@ class App extends Component {
     //   console.log(res.data);
     // })
    this.props.getSmurfs()
-  //  this.props.postSmurfs()
-   console.log(this.state)
+   this.props.postSmurfs(  {
+  name:'Poppa Kurf',
+   position:'Village Leader',
+   nickname: 'Pops',
+   description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
+   
+   })
+  //  console.log(this.state)
    
   }
   
